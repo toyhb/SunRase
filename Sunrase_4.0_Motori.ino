@@ -43,12 +43,8 @@ void loop() {
  delay(5);
 }
 bool checkMag(){
-  if(digitalRead(magnetic) == 1){
-  return true;  
-}
- else if(digitalRead(magnetic) == 0){
-  return false;
- } 
+  if(digitalRead(magnetic) == 1) return true;  
+  else return false; 
 }
 bool checkUltra(){
   digitalWrite( triggerUp, LOW );
@@ -58,12 +54,8 @@ bool checkUltra(){
   long durata = pulseIn( echoUp, HIGH );
   long distanza = 0.034 * durata / 2;
   Serial.println(distanza);
-  if(distanza < 10){
-    return true;
-}
-  else if(distanza > 10){
-    return false;
- }
+  if(distanza < 10) return true;
+  else return false;
 }
 void AvantiTutta(){
   digitalWrite(motDestraI, LOW);
@@ -138,12 +130,8 @@ bool destraCheck(){
   digitalWrite(triggerDestra, LOW);
   durata = pulseIn(echoDestra, HIGH);
   distanza = 0.034 * durata / 2;
-  if(distanza < 40){
-  return true;  
-  }
-  else if(distanza > 39){
-  return false;  
-  } 
+  if(distanza < 40) return true;  
+  else return false;
  }
  bool sinistraCheck(){
   digitalWrite(triggerSinistra, LOW);
@@ -152,10 +140,6 @@ bool destraCheck(){
   digitalWrite(triggerSinistra, LOW);
   durata = pulseIn(echoSinistra, HIGH);
   distanza = 0.034 * durata / 2;
-  if(distanza < 40){
-  return true;  
-  }
-  else if(distanza > 39){
-  return false;  
-  } 
+  if(distanza < 40) return true;  
+  else return false;  
  }
