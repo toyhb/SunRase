@@ -73,11 +73,11 @@ void gira(){
   digitalWrite(motDestraI, HIGH);
   digitalWrite(motSinistraI, HIGH);
   delay(1000);
-  digitalWrite(motDestraA, LOW);
-  digitalWrite(motSinistraA, LOW);
+  digitalWrite(motDestraI, LOW);
+  digitalWrite(motSinistraI, LOW);
   delay(10);
-  digitalWrite(motDestraA, HIGH);
-  digitalWrite(motSinistraA, LOW);
+  digitalWrite(motDestraA, LOW);
+  digitalWrite(motSinistraA, HIGH);
   delay(tempo_rotazione); 
   digitalWrite(motDestraA, LOW);
   digitalWrite(motSinistraA, LOW);
@@ -90,8 +90,8 @@ void gira(){
   digitalWrite(motDestraI, HIGH);
   digitalWrite(motSinistraI, HIGH);
   delay(1000);
-  digitalWrite(motDestraA, LOW);
-  digitalWrite(motSinistraA, LOW);
+  digitalWrite(motDestraI, LOW);
+  digitalWrite(motSinistraI, LOW);
   delay(10);
   digitalWrite(motDestraA, HIGH);
   digitalWrite(motSinistraA, LOW);
@@ -103,11 +103,11 @@ void gira(){
 }
 int lateralCheck(){
   int x;
-  if(destraCheck == true){
+  if(destraCheck()== true){
    x = 1;
    return x;
  }
- else if(sinistraCheck == true){
+ else if(sinistraCheck() == true){
    x = 2;
    return x;
  }
