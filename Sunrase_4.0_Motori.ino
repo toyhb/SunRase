@@ -118,7 +118,7 @@ int lateralCheck(){
   return x;
   }
  else if(randNumber > 149){
-  x = 0;
+  x = 2;
   return x;
   }
  
