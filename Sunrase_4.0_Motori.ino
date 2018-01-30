@@ -66,7 +66,7 @@ void AvantiTutta(){
 }
 void gira(){
   val = lateralCheck();
-  if(val = 1){
+  if(val == 1){
   digitalWrite(motDestraA, LOW);
   digitalWrite(motSinistraA, LOW);
   delay(500);
@@ -83,7 +83,7 @@ void gira(){
   digitalWrite(motSinistraA, LOW);
   delay(10);    
  }
- else if(val = 2){
+ else if(val == 2){
   digitalWrite(motDestraA, LOW);
   digitalWrite(motSinistraA, LOW);
   delay(500);
