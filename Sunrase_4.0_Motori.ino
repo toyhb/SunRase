@@ -195,6 +195,8 @@ void giraSpecialeDestra(){
   digitalWrite(motDestraA, LOW);
   digitalWrite(motSinistraA, LOW);
   delay(10);
+  digitalWrite(motDestraA, HIGH);
+  digitalWrite(motSinistraA, HIGH);
   loop();
 }
 void giraSpecialeSinistra(){
@@ -213,5 +215,7 @@ void giraSpecialeSinistra(){
   digitalWrite(motDestraA, LOW);
   digitalWrite(motSinistraA, LOW);
   delay(10);
+  digitalWrite(motDestraA, HIGH);
+  digitalWrite(motSinistraA, HIGH);
   loop();
 }
