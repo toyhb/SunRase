@@ -1,3 +1,7 @@
+/*
+ * SunRase 4.0 by: Reolfi Riccardo, Incolto Davide, Murialdo Andrea, Pastorino Simone.
+ * Code by: Reolfi Riccardo & Incolto Davide.
+*/
 #include <LiquidCrystal.h>
 const int tempPin = A0;
 const int batPin = A1;
