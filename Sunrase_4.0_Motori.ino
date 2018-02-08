@@ -33,6 +33,7 @@ void setup() {
   randomSeed(analogRead(0));
 }
 void loop() {
+  inizio:;
   AvantiTutta();
   if(checkMag() == true){
     gira();
@@ -80,53 +81,55 @@ void gira(){
    for(int i = 0; i < 10; i++){
       digitalWrite(motDestraI, LOW);
       digitalWrite(motSinistraI, LOW);
-      DScontrol(1);
       delay(1);
    }
    for(int i = 0; i < tempo_rotazione; i++){
        digitalWrite(motDestraA, LOW);
        digitalWrite(motSinistraA, HIGH);
-       DScontrol(1);
+       if(DScontrol() == true){
+       giraSpecialeDestra();
+       break;
+       }
        delay(1);
    }
    for(int i = 0; i < 10; i++){
        digitalWrite(motDestraA, LOW);
        digitalWrite(motSinistraA, LOW);
-       DScontrol(1);
        delay(1);
    }
+   loop();
  }
  else if(val == 2){
    for(int i = 0; i < 500; i++){
       digitalWrite(motDestraA, LOW);
       digitalWrite(motSinistraA, LOW);
-      DScontrol(2);
       delay(1);
     }
    for(int i = 0; i < 1000; i++){
       digitalWrite(motDestraI, HIGH);
       digitalWrite(motSinistraI, HIGH);
-      DScontrol(2);
       delay(1);
    }
    for(int i = 0; i < 10; i++){
       digitalWrite(motDestraI, LOW);
       digitalWrite(motSinistraI, LOW);
-      DScontrol(2);
       delay(1);
    }
    for(int i = 0; i < tempo_rotazione; i++){
        digitalWrite(motDestraA, LOW);
        digitalWrite(motSinistraA, HIGH);
-       DScontrol(2);
+       if(DScontrol() == true){
+        giraSpecialeSinistra();
+        break;
+       }
        delay(1);
    }
    for(int i = 0; i < 10; i++){
        digitalWrite(motDestraA, LOW);
        digitalWrite(motSinistraA, LOW);
-       DScontrol(2);
        delay(1);
    }
+   loop();
   }
 }
 int lateralCheck(){
@@ -171,13 +174,8 @@ bool destraCheck(){
   if(distanza < 40) return true;  
   else return false;  
  }
-void DScontrol(int x){
- if(x == 1){
-    if (digitalRead(magnetic) == 1) giraSpecialeSinistra();
- }
- if(x == 2){
-    if (digitalRead(magnetic) == 1) giraSpecialeDestra();
- }
+bool DScontrol(){
+  if(digitalRead(magnetic) == 1) return true;
 }
 void giraSpecialeDestra(){
   digitalWrite(motDestraA, LOW);
@@ -197,7 +195,6 @@ void giraSpecialeDestra(){
   delay(10);
   digitalWrite(motDestraA, HIGH);
   digitalWrite(motSinistraA, HIGH);
-  loop();
 }
 void giraSpecialeSinistra(){
   digitalWrite(motDestraA, LOW);
@@ -217,5 +214,4 @@ void giraSpecialeSinistra(){
   delay(10);
   digitalWrite(motDestraA, HIGH);
   digitalWrite(motSinistraA, HIGH);
-  loop();
 }
