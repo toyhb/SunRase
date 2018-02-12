@@ -1,35 +1,40 @@
 /*
- * SunRase 4.0 by: Reolfi Riccardo, Incolto Davide, Murialdo Andrea, Pastorino Simone.
+ * SunRase 4.0 by: Reolfi Riccardo, Incolto Davide, Murialdo Andrea, Pastorino Simone, Santo Alessandro.
  * Code by: Reolfi Riccardo & Incolto Davide.
 */
-#include <LiquidCrystal.h>
-const int tempPin = A0;
-const int batPin = A1;
-LiquidCrystal lcd(4, 6, 10, 11, 12, 13);
-void setup() {
-  lcd.begin(16, 2);
-  pinMode(A0, INPUT);
-  pinMode(A1, INPUT);
-}
+#include "LiquidCrystal.h"
 
-void loop() {
- lcd.setCursor(0, 0);
- lcd.print("Temp. Driver:");
- lcd.print(temp());
- lcd.setCursor(0, 1);
- lcd.print("Batteria:");
- lcd.print(batteria());
- lcd.print("%");
- lcd.clear();
+LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
+
+float input_voltage = 0.0;
+float temp=0.0;
+float r1=90900.0;
+float r2=10000.0;
+
+
+void setup()
+{
+   Serial.begin(9600);     //  opens serial port, sets data rate to 9600 bps
+   lcd.begin(16, 2);       //// set up the LCD's number of columns and rows: 
+   lcd.print("DIGITAL VOLTMETER");
 }
-float temp(){
-  int tempVal = analogRead(tempPin);
-  float millivolts = (tempVal / 1024.0) * 5000;
-  float celsius = millivolts / 10;
-  return celsius;
-}
-int batteria(){
-  int batVal = analogRead(batPin);
-  int batX100 = (batVal * 100) / 1024;
-  return batX100;
+void loop()
+{
+   
+//Conversion formula
+
+   int analog_value = analogRead(A0);
+    temp = (analog_value * 5.0) / 1024.0; 
+   input_voltage = temp / (r2/(r1+r2));
+   
+   if (input_voltage < 0.1) 
+   {
+     input_voltage=0.0;
+   } 
+    Serial.print("v= ");
+    Serial.println(input_voltage);
+    lcd.setCursor(0, 1);
+    lcd.print("Voltage= ");
+    lcd.print(input_voltage);
+    delay(300);
 }
